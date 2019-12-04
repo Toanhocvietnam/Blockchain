@@ -1,0 +1,20 @@
+body {
+	background-color: #e6ffff;
+	width: 100%;
+}
+.contentPage {
+	width: 33%;
+	float: left;
+}
+.row {
+	display: flex;
+	align-content: space-between;
+	margin-bottom: 10px;
+}
+.left-clm{
+	width: 49%;
+}
+.right-clm {
+	background-color: white;
+	width: 49%;
+}
