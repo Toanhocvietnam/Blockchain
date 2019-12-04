@@ -98,9 +98,10 @@ public class Miner extends Thread {
                 consensusList.set(index-1, true);
                 candidate = nonce;
                 claimerID = index;
+                
             }
         }
-        final_nonce = String.valueOf(nonce);
+        final_nonce = String.valueOf(candidate);
         msg.add("Miner" + (this.index ) +  " has approved that Miner "
                 + (claimerID + 1) + " came up with the correct solution: " + "\"" + final_nonce + "\" \n");
         System.out.println("Miner" + (this.index ) +  " has approved that Miner "

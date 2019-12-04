@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,9 +42,6 @@ public class Mine extends HttpServlet {
 		blockchain.loadBlockChain();
 		
 		blockchain.simulateTransactions();
-//		for(int i=0; i<blockchain.transactions.size(); i ++) {
-//			System.out.println(blockchain.transactions.get(i).getIdTran());
-//		}
 		Block newBlock = blockchain.mine();
 		blockchain.blockchain.add(newBlock);
 		BlockDAO.insertBlock(newBlock);
@@ -56,7 +55,9 @@ public class Mine extends HttpServlet {
 		
         blockchain.updateCoinHolders();
         blockchain.updateBalanceDB();
-        request.setAttribute("block", newBlock);
+        request.setAttribute("newBlock", newBlock);
+        RequestDispatcher rd = request.getRequestDispatcher("View/mine.jsp");
+		rd.forward(request, response);
 			
 	}
 

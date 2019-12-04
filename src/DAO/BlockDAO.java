@@ -21,10 +21,11 @@ public class BlockDAO {
 			while(rs.next()) {
 			 int id= rs.getInt("id");
 			 String note = rs.getString("note");
+			 long timestamp = rs.getLong("timstamp");
 			 String prev_hash = rs.getString("prev_hash");
 			 String cur_hash = rs.getString("cur_hash");
 			 String nonce = rs.getString("nounce");
-			 Block block = new Block(id, note,prev_hash,cur_hash,nonce);
+			 Block block = new Block(id, note,timestamp,prev_hash,cur_hash,nonce);
 			 blockChain.add(block);
 			 
 			}
@@ -60,10 +61,11 @@ public class BlockDAO {
 			if(rs.next()) {
 			 int id= rs.getInt("id");
 			 String note = rs.getString("note");
+			 long timestamp = rs.getLong("timstamp");
 			 String prev_hash = rs.getString("prev_hash");
 			 String cur_hash = rs.getString("cur_hash");
 			 String nonce = rs.getString("nounce");
-			 block = new Block(id, note,prev_hash,cur_hash,nonce);
+			 block = new Block(id, note, timestamp,prev_hash,cur_hash,nonce);
 			 return block;
 			}
 			conn.close();

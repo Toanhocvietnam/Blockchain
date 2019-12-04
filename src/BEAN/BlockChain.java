@@ -18,7 +18,7 @@ public class BlockChain {
     private final static int MINING_REWARDS= 3;
     private static ArrayList<Miner> miner_threads = new ArrayList<>();
     public  static Block createGenesisBlock(){
-    	return new Block(0, "\"Everything starts from here!\"", "0");
+    	return new Block(0, "\"Everything starts from here!\"", "0", coinHolders);
     }
     
     public static void printChain(){

@@ -38,7 +38,7 @@ public class Display extends HttpServlet {
 		System.out.println(blockChain.size());
 		request.setAttribute("blockChain", blockChain);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("View/BlockChain.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("View/index.jsp");
 		rd.forward(request, response);
 	}
 

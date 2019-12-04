@@ -1,4 +1,5 @@
 package BEAN;
+import java.util.ArrayList;
 import java.util.Date;
 public class Block {
 	private int index;
@@ -44,9 +45,10 @@ public class Block {
 		this.msg = msg;
 	}
 
-	public Block(int id, String note2, String prev_hash, String cur_hash, String nonce) {
+	public Block(int id, String note,long timestamp, String prev_hash, String cur_hash, String nonce) {
 		this.index = id;
 		this.note = note;
+		this.timestamp = timestamp;
 		this.prev_hash = prev_hash;
 		this.hash = cur_hash;
 		this.nonce = nonce;
@@ -55,6 +57,20 @@ public class Block {
 
 	public Block() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Block(int index, String note, String prevHash, ArrayList<CoinHolder> coinHolders) {
+		super();
+		this.index = index;
+		this.note = note;
+		this.prev_hash = prev_hash;
+		this.timestamp = new Date().getTime();
+		this.transactions = new Transaction[BLOCK_SIZE];
+		for(int i =0; i<coinHolders.size();i++) {
+			transactions[i] = new Transaction(-1,coinHolders.get(i).getId(), 5,true,0);
+		}
+		this.hash = calcHash();
+		
 	}
 
 	public int getIndex() {
