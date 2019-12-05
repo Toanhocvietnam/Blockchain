@@ -46,28 +46,9 @@ public class BlockChain {
 		return recipientId;
     }
 	public static double getBalance(int id) {
-		double balance = coinHolders.get(id-1).getBalance(); // cũ
+		double balance = coinHolders.get(id-1).getBalance(); // Balance cũ
 
-//        for(int i = 0; i < blockchain.size(); i++){
-//            Block currB = blockchain.get(i);
-//            for(int j = 0; j < Block.BLOCK_SIZE; j ++){
-//                Transaction currT = currB.getTransactions()[j];
-//                if (currT == null){
-//                    break;
-//                }
-//                else {
-//                    if (currT.getRecipientID() == id) {
-//
-//                        balance += currT.getAmount();
-//
-//
-//                    } else if (currT.getSenderID() == id) {
-//                        balance -= currT.getAmount();
-//
-//                    }
-//                }
-//            }
-//        }
+
 
 
         return  balance;
@@ -112,20 +93,7 @@ public class BlockChain {
 
         return result;
     }
-	//Thực hiện vòng lặp tăng nonce cho đến khi nounce thỏa mãn hash của nounce+prevTimestamp có đủ DIFICULTY số 0
-//	public static String proofOFwork(long prevTimestamp) {
-//        int nounce = Integer.MIN_VALUE;
-//        while (!numLeading0is(DIFFICULTY, Encryption.sha256("" + nounce + prevTimestamp))) {
-//            nounce++;
-//            if (nounce == Integer.MAX_VALUE
-//                    && !numLeading0is(DIFFICULTY, Encryption.sha256("" + nounce + prevTimestamp))) {
-//                prevTimestamp++;
-//                nounce = Integer.MIN_VALUE;
-//            }
-//        }
-//
-//        return ("" + nounce + prevTimestamp);
-//    }
+
 	public static void retreiveVerifiedTxions(Transaction[] nextToBeConfirmed, int blockId) {
 		HashMap<Integer, Double> tempBalanceMap = new HashMap<Integer, Double>();
 		int i = 1;
@@ -193,15 +161,7 @@ public class BlockChain {
 
         return next;
     }
-//	public static boolean addCoinHolder(String recipientId){
-//		for (String coinHolder : coinHolders_address) {
-//			if(coinHolder.equals(recipientId)){
-//				return false;
-//			}
-//		}
-//		coinHolders_address.add(recipientId);
-//		return true;
-//	}
+
 	public static void updateCoinHolders() {
       
       Block lastB = blockchain.get(blockchain.size()-1);
@@ -230,44 +190,7 @@ public class BlockChain {
 		miners = chList;
 		
 	}
-//    public static void printCoinHolders() {
-//        for (int i = 0; i < coinHolders_address.size(); i++) {
-//            String addr = coinHolders_address.get(i);
-//            System.out.println(addr + " owns: " + getBalance(addr));
-//        }
-//    }
-//    public static void multiMinerMinig(){
-//         loadCoinHolder();
-//    	 Block newBlock = createGenesisBlock();
-//         blockchain.add(newBlock);
-//         miners_address = loadMiners();
-//
-//         for (int i = 0; i < MAX_BLOCKS; i++) {
-//             simulateTransactions();
-//             newBlock = mine();
-//             blockchain.add(newBlock);
-//             updateCoinHolders(newBlock);
-////           updateTransactions(newBlock);
-//         }
-//
-//         String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);
-//         System.out.println(blockchainJson);
-//         
-//         System.out.println("\nAll minted coins: " + MAX_BLOCKS * MINING_REWARDS);
-//         double coinsOfHolders = 0;
-//         for (int i = 0; i < coinHolders_address.size(); i++) {
-//             coinsOfHolders += getBalance(coinHolders_address.get(i));
-//         }
-//         System.out.println("All coins in coinHolders: " + coinsOfHolders + "\n");
-//         printCoinHolders();
-//
-//
-//    	
-//   
-//
-//    	
-//    	
-//    }
+
 	public static void insertTxions(Block block) {
 		Transaction[] txions = block.getTransactions();
 		for(int i=0;i < txions.length;i++) {

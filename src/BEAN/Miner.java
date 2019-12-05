@@ -28,7 +28,7 @@ public class Miner extends Thread {
         this.prevInfo = prevInfo;
         this.difficulty = difficulty;
 
-        //System.out.println("Creating miner thread: " + minerID);
+
     }
     private boolean consensusAchieved() {
         boolean agree = true;
@@ -52,15 +52,15 @@ public class Miner extends Thread {
         msg = new ArrayList<String>();
     }
     private void resetConsensus() {
-        // 1, reset the consensusList to all false
+
         for (int i = 0; i < consensusList.size(); i++) {
             consensusList.set(i, false);
         }
-        // 2, reset candidate
+
         candidate = Integer.MIN_VALUE;
-        // 3, reset solutionClaimed to false
+
         solutionClaimed = false;
-        // 4, reset claimerID to -1
+
         claimerID = -1;
     }
     public boolean numLeading0is(int difficulty,String hash){
@@ -72,28 +72,23 @@ public class Miner extends Thread {
     }
     @Override
     public void run() {
-//      System.out.println("Running miner thread: " + this.getName());
+
         int nonce = Integer.MIN_VALUE;
         while (!consensusAchieved()) {
             while (!solutionClaimed && !numLeading0is(difficulty, Encryption.sha256("" + nonce + prevInfo))) {
                 nonce++;
-//                if (nonce == Integer.MAX_VALUE
-//                        && !numLeading0is(difficulty, Encryption.sha256("" + nonce + prevInfo))) {
-//                    prevInfo++;
-//                    nonce = Integer.MIN_VALUE;
-//                }
+
             }
             if (solutionClaimed) {
-                // if someone else claims that a solution is found, verify that
+
                 if (numLeading0is(difficulty, Encryption.sha256("" + candidate + prevInfo))) {
                     consensusList.set(index-1, true);
                 } else {
-                    // if this candidate fails the verification
+
                     resetConsensus();
                 }
             } else if (numLeading0is(difficulty, Encryption.sha256("" + nonce + prevInfo))) {
-                // if this miner finds a solution, report to the public, and wait for
-                // verification
+
                 solutionClaimed = true;
                 consensusList.set(index-1, true);
                 candidate = nonce;
